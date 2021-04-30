@@ -12,6 +12,10 @@ const diceEl = document.querySelector('.dice');
 const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+const btnGuide = document.querySelector('.btn--guide');
+const modal = document.querySelector('.modal');
+const btnCloseModal = document.querySelector('.close-modal');
+const overlay = document.querySelector('.overlay');
 
 //starting conditions
 score0El.textContent = 0;
@@ -84,3 +88,23 @@ btnNew.addEventListener('click', () => {
   current0El.textContent = 0;
   current1El.textContent = 0;
 });
+
+function displayRule() {
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+}
+function closeModal() {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+}
+btnCloseModal.addEventListener('click', closeModal);
+
+btnGuide.addEventListener('click', displayRule);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    closeModal();
+  }
+});
+
+overlay.addEventListener('click', closeModal);
+
